@@ -26,6 +26,7 @@ export default function ProductsList() {
                 <TableHead>
                     <TableRow>
                         <TableCell align="center">Nome</TableCell>
+                        <TableCell align="center">Quantidade</TableCell>
                         <TableCell align="center">Descricao</TableCell>
                         <TableCell align="center">Palavras Chave</TableCell>
                         <TableCell align="center">Status</TableCell>
@@ -35,6 +36,7 @@ export default function ProductsList() {
                     { produtos.map((produto) => (
                         <TableRow key={produto.idproduto}>
                             <TableCell align="center">{produto.nome}</TableCell>
+                            <TableCell align="center">{produto.quantidade ? produto.quantidade : 0}</TableCell>
                             <TableCell align="center">{produto.descricao}</TableCell>
                             <TableCell align="center">{produto.palavras_chave}</TableCell>
                             <TableCell align="center">{produto.status ? 'ATIVO' : 'INATIVO'}</TableCell>

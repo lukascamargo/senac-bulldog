@@ -1,6 +1,6 @@
 import { NowRequest, NowResponse } from '@vercel/node'
-import { METHODS } from 'http';
 import mysql from 'promise-mysql';
+import { Produtos } from '../../models/produtos';
 
 const connection = mysql.createPool({
     host: process.env.HOST,
@@ -17,11 +17,20 @@ async function getProducts(request: NowRequest, response: NowResponse){
     return response.json(query);
 }
 
+async function saveProducts(request: NowRequest, response: NowResponse) {
+    const product: Produtos = request.body;
+
+    const query = await (await connection).query('INSERT INTO Produto SET ?', product);
+
+    return response.json(query);
+}
+
 export default async (request: NowRequest, response: NowResponse) => {
     switch(request.method){
         case 'GET':
-            await getProducts(request, response);
-            break;
+            return await getProducts(request, response);
+        case 'POST':
+            return await saveProducts(request, response);
         default:
             response.status(405).end();
             break;    

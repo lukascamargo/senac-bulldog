@@ -5,7 +5,7 @@ export default function PrivateHome() {
 
     return (
         <PrivateLayout>
-            <ProductsList />
+            <h3>Acesso privado para os clientes</h3>
         </PrivateLayout>
     );
 };
