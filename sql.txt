@@ -21,6 +21,10 @@ CREATE TABLE Produto (
       nome VARCHAR(100) NOT NULL,
       descricao VARCHAR(100),
       palavras_chave VARCHAR(100) NOT NULL,
+      imagem TEXT,
+      valor DECIMAL(10,2),
+      descricao_curta VARCHART(50),
+      descricao_longa TEXT,
       PRIMARY KEY (idproduto)
 );
 

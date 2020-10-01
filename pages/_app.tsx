@@ -8,8 +8,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import LightTheme from '../styles/themes/light';
 import { ThemeProvider } from 'styled-components';
 
-import '../styles/reset.css';
-
 function App({ Component, pageProps }: AppProps) {
   return (
   <React.StrictMode>
