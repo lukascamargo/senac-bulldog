@@ -1,22 +1,31 @@
 import PrivateLayout from '../../layout/PrivateLayout';
-import ProductsList from '../../components/ProductsList';
+import ProductsList from '../../components/AdminProductsList';
 import Link from 'next/link';
 import { Button } from '@material-ui/core';
 import AdicionarProduto from './adicionar-produto';
-import React from "react";
+import React, {useState} from "react";
 import {Produtos} from "../../models/produtos";
+import PerguntasERespostas from "./perguntas-e-respostas";
 
 
 export default function Produto() {
-    const [openDialog, setOpenDialog] = React.useState<boolean>(false);
-    const [createdProducts, setCreatedProducts] = React.useState<number>(0);
-    const [produto, setProduto] = React.useState<Produtos>();
+    const [openDialog, setOpenDialog] = useState<boolean>(false);
+    const [questionDialog, setQuestionDialog] = useState<boolean>(false);
+    const [createdProducts, setCreatedProducts] = useState<number>(0);
+    const [produto, setProduto] = useState<Produtos>();
 
     const handleDialog = () => {
         if (openDialog) {
-            setProduto({} as Produtos);
+            setProduto(undefined as Produtos);
         }
         setOpenDialog(!openDialog);
+    }
+
+    const handleQuestionDialog = () => {
+        if (questionDialog) {
+            setProduto(undefined as Produtos);
+        }
+        setQuestionDialog(!questionDialog);
     }
 
     const updateProductList = () => {
@@ -30,6 +39,14 @@ export default function Produto() {
         handleDialog();
     }
 
+    const editarPerguntas = (parameter: Produtos) => {
+        setProduto(parameter);
+        handleQuestionDialog();
+    }
+
+
+
+
     return (
         <PrivateLayout>
             <Button
@@ -39,8 +56,9 @@ export default function Produto() {
             >
                 Criar Produto
             </Button>
-            <ProductsList novosProdutos={createdProducts} editarProduto={editarProduto}/>
+            <ProductsList novosProdutos={createdProducts} editarProduto={editarProduto} editarPerguntas={editarPerguntas}/>
             <AdicionarProduto open={openDialog} handleClose={handleDialog} handleSaveProduct={updateProductList} editarProduto={produto} />
+            <PerguntasERespostas open={questionDialog} handleClose={handleQuestionDialog} produto={produto} />
         </PrivateLayout>
     );
 };

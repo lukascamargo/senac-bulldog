@@ -6,15 +6,17 @@ import CreateIcon from '@material-ui/icons/Create';
 import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Produtos } from '../../models/produtos';
+import ProductListMenu from "../ProductListMenu";
 
 interface OwnProps {
     novosProdutos: number;
     editarProduto(produto: Produtos): void;
+    editarPerguntas(produto: Produtos): void;
 }
 
 type Props = OwnProps;
 
-export default function ProductsList({ novosProdutos, editarProduto}: Props) {
+export default function ProductsList({ novosProdutos, editarProduto, editarPerguntas}: Props) {
     const [produtos, setProdutos] = useState<Produtos[]>([]);
 
     useEffect(() => {
@@ -48,17 +50,11 @@ export default function ProductsList({ novosProdutos, editarProduto}: Props) {
                     { produtos.map((produto) => (
                         <TableRow key={produto.idproduto}>
                             <TableCell align="center">
-                                {
-                                    produto.status ?
-                                        (<CheckBoxIcon fontSize="small"/>)
-                                        : (<CheckBoxOutlineBlankIcon fontSize="small" />)
-                                }
-                                <Button size="small" onClick={() => editarProduto(produto)}>
-                                    <CreateIcon fontSize="small" />
-                                </Button>
-                                <Button size="small" onClick={() => {}}>
-                                    <QuestionAnswerIcon fontSize="small"/>
-                                </Button>
+                                <ProductListMenu
+                                    produto={produto}
+                                    editarProduto={() => editarProduto(produto)}
+                                    perguntasRespostas={() => editarPerguntas(produto)}
+                                />
                             </TableCell>
                             <TableCell align="center">{produto.nome}</TableCell>
                             <TableCell align="center">{produto.quantidade ? produto.quantidade : 0}</TableCell>

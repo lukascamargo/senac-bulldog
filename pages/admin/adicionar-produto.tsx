@@ -1,5 +1,3 @@
-import PrivateLayout from '../../layout/PrivateLayout';
-import ProductsList from '../../components/ProductsList';
 import { useForm } from "react-hook-form";
 import {AppBar, Button, Dialog, Grid, IconButton, TextField, Toolbar, Typography} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
@@ -21,7 +19,7 @@ export default function AdicionarProduto({ open, handleClose, handleSaveProduct,
     const onSubmit = async (data) => {
         data.status = true;
 
-        if (editarProduto.idproduto) {
+        if (editarProduto?.idproduto) {
             data.idproduto = editarProduto.idproduto;
             await axios.put('/api/produtos', data);
         } else {
@@ -47,14 +45,14 @@ export default function AdicionarProduto({ open, handleClose, handleSaveProduct,
                         <CloseIcon />
                     </IconButton>
                     <Typography variant="h6" style={{ flex: 1, marginLeft: 2 }}>
-                        {editarProduto?.idproduto ? 'Editar ': 'Adicionar '} Produto { editarProduto?.nome}
+                        {editarProduto?.idproduto ? 'Editar ': 'Adicionar '} Idproduto { editarProduto?.nome}
                     </Typography>
                 </Toolbar>
             </AppBar>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container spacing={5}>
                     <Grid item xs={6}>
-                        <TextField id="nome" name="nome" label="Nome do Produto" defaultValue={editarProduto?.nome} fullWidth inputRef={register({ required: true })}/>
+                        <TextField id="nome" name="nome" label="Nome do Idproduto" defaultValue={editarProduto?.nome} fullWidth inputRef={register({ required: true })}/>
                     </Grid>
                     <Grid item xs={6}>
                         <TextField id="quantidade" name="quantidade" label="Quantidade" type="number" defaultValue={editarProduto?.quantidade} fullWidth inputRef={register}/>
@@ -62,7 +60,7 @@ export default function AdicionarProduto({ open, handleClose, handleSaveProduct,
                 </Grid>
                 <Grid container spacing={5}>
                     <Grid item xs={6}>
-                        <TextField id="valor" type="number" name="valor" label="Valor do Produto" defaultValue={editarProduto?.valor}  inputRef={register({ required: true })}/>
+                        <TextField id="valor" type="number" name="valor" label="Valor do Idproduto" defaultValue={editarProduto?.valor}  inputRef={register({ required: true })}/>
                     </Grid>
                     <Grid item xs={6}>
                         <TextField id="palavras_chave" name="palavras_chave" label="Palavras Chave" defaultValue={editarProduto?.palavras_chave}  inputRef={register({ required: true })}/>
@@ -86,7 +84,7 @@ export default function AdicionarProduto({ open, handleClose, handleSaveProduct,
                     (
                         <Button variant="contained" color="secondary" fullWidth onClick={deletar}>
                             <Typography style={{ color: 'red' }}>
-                                Deletar Produto
+                                Deletar Idproduto
                             </Typography>
                         </Button>
                     ):

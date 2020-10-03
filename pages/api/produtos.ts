@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
 });
 
 
-const queryPromiseGet = (query: any) => {
+export const queryPromiseGet = (query: any) => {
     return new Promise((resolve, reject) => {
         connection.query(query, function(error, results, fields) {
             if (error) return reject(error);
@@ -21,7 +21,7 @@ const queryPromiseGet = (query: any) => {
     })
 }
 
-const queryPromiseSave = (query: any, object: any) => {
+export const queryPromiseSave = (query: any, object: any) => {
     return new Promise((resolve, reject) => {
         connection.query(query, object, function(error, results, fields) {
             if (error) return reject(error);
