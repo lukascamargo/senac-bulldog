@@ -1,9 +1,12 @@
-import PrivateLayout from '../../layout/PrivateLayout';
-import ProductsList from '../../components/ProductsList';
+import PublicLayout from "../layout/PublicLayout";
+import PublicProductList from "../components/PublicProductList";
+import React from "react";
 
 export default function LandingPage() {
 
     return (
-        <h3>Landing Page</h3>
+        <PublicLayout>
+            <PublicProductList />
+        </PublicLayout>
     );
 };

@@ -1,11 +1,9 @@
 import PrivateLayout from '../../layout/PrivateLayout';
 import ProductsList from '../../components/AdminProductsList';
 
-export default function Usuarios() {
+export default function LandingPage() {
 
     return (
-        <PrivateLayout>
-            <h3>Lista de Usuarios</h3>
-        </PrivateLayout>
+        <h3>Landing Page</h3>
     );
 };
