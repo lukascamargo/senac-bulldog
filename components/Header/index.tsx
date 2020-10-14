@@ -15,7 +15,7 @@ export default function Header() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6">
-                        Bulldog
+                       The Bulldog
                     </Typography>
                     <Button color="inherit" style={{marginLeft: "70%"}}>Login</Button>
                 </Toolbar>
