@@ -5,8 +5,20 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
 import { Grid, Icon } from '@material-ui/core';
+import jwt from 'jsonwebtoken';
 
 export default function SimpleHeader() {
+
+    function getUserName() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            return 'Usuario';
+        }
+
+        const user: any = jwt.decode(token);
+        return user.nome;
+    }
+
     return (
         <div style={{flexGrow: 1}}>
             <AppBar position="static">
@@ -22,7 +34,7 @@ export default function SimpleHeader() {
                             </Grid>
                         <Grid item>
                             <Typography variant="h6">
-                                Olá, Usuário
+                                Olá, {getUserName()}
                             </Typography>
                         </Grid>
                     </Grid>

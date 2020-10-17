@@ -6,8 +6,17 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
 import { Grid, Icon } from '@material-ui/core';
 import Link from "next/link";
+import { useState } from 'react';
+import Login from '../Login';
 
 export default function SimplePublicHeader() {
+    const [openLogin, setOpenLogin] = useState<boolean>(false);
+
+
+    const handleDialog = () => {
+        setOpenLogin(!openLogin);
+    }
+
     return (
         <div style={{flexGrow: 1}}>
             <AppBar position="static">
@@ -15,7 +24,7 @@ export default function SimplePublicHeader() {
                     <IconButton edge="start" color="secondary">
                         <ArrowBackIos />
                     </IconButton>
-                    <Grid container>
+                    <Grid container spacing={5}>
                         <Grid item xs={9}>
                             <Typography variant="h6">
                                 <Link href="/">
@@ -30,9 +39,17 @@ export default function SimplePublicHeader() {
                                 </Link>
                             </Typography>
                         </Grid>
+                        <Grid item>
+                            <Typography variant="h6">
+                                <Button color="secondary" onClick={handleDialog}>
+                                    Login
+                                </Button>
+                            </Typography>
+                        </Grid>
                     </Grid>
                 </Toolbar>
             </AppBar>
+            <Login open={openLogin} handleClose={handleDialog}/>
         </div>
     );
 }

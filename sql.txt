@@ -28,6 +28,18 @@ CREATE TABLE Idproduto (
       PRIMARY KEY (idproduto)
 );
 
+CREATE TABLE Usuario (
+      idusuario int(11) NOT NULL AUTO_INCREMENT,
+      nome varchar(100) NOT NULL,
+      sobrenome varchar(100) NOT NULL,
+      cpf varchar(20) NOT NULL UNIQUE,
+      senha TEXT NOT NULL,
+      email varchar(200) NOT NULL UNIQUE,
+      status varchar(50) NOT NULL DEFAULT "ATIVO",
+      perfil VARCHAR(50) NOT NULL,
+      PRIMARY KEY (idusuario)
+);
+
 CREATE TABLE Funcionario (
       idusuario int(11) NOT NULL AUTO_INCREMENT,
       nome varchar(100) NOT NULL,
