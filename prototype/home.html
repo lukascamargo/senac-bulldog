@@ -30,17 +30,11 @@
             
             
             <!-- Menu -->
-            <ul class="navbar-nav d-none d-sm-block">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Olá, {{ Usuário }}
+            <ul class="navbar-nav text-md-center text-left d-none d-sm-block">
+                <li class="nav-item">
+                    <a href="./carrinho.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Perfil</a>
-                    <a class="dropdown-item" href="#">Pedidos</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Carrinho</a>
-                    </div>
                 </li>
             </ul>
              
@@ -58,16 +52,19 @@
         <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto text-md-center text-left">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a> 
+                    <a class="nav-link" href="#">Vestuário</a> 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">Charutos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a> 
+                    <a class="nav-link" href="#">Cigarros</a> 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a> 
+                    <a class="nav-link" href="#">Acessórios</a> 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Isqueiros</a> 
                 </li>
             </ul>
         </div>
@@ -77,40 +74,299 @@
         <section>
             <h1>Mais Desejados</h1>
             <div class="row">
-                <div class="col-sm">Teste 1</div>
-                <div class="col-sm">Teste 2</div>
-                <div class="col-sm">Teste 3</div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta <span class="badge badge-danger">39% Off</span></h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="text-center" style="color: red; padding-right: 1em;"><del>R$ 100,00</del></p>
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="./carrinho.html" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="./detalhes.html" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta</h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta</h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row">
-                <div class="col-sm">Teste 4</div>
-                <div class="col-sm">Teste 5</div>
-                <div class="col-sm">Teste 6</div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta</h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta</h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta</h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section>
             <div class="jumbotron">
-                <h1 class="display-6">Promocão!!</h1>
+                <h1 class="display-6">É de Desconto que a gente gosta!!</h1>
                 <p class="lead">Veja abaixo quais itens estão em promocao e cabem no seu bolso!</p>
             </div>
             <div class="row">
-                <div class="col-sm">Teste 1</div>
-                <div class="col-sm">Teste 2</div>
-                <div class="col-sm">Teste 3</div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta <span class="badge badge-danger">39% Off</span></h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="text-center" style="color: red; padding-right: 1em;"><del>R$ 100,00</del></p>
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta <span class="badge badge-danger">39% Off</span></h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="text-center" style="color: red; padding-right: 1em;"><del>R$ 100,00</del></p>
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta <span class="badge badge-danger">39% Off</span></h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="text-center" style="color: red; padding-right: 1em;"><del>R$ 100,00</del></p>
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row">
-                <div class="col-sm">Teste 4</div>
-                <div class="col-sm">Teste 5</div>
-                <div class="col-sm">Teste 6</div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta <span class="badge badge-danger">39% Off</span></h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="text-center" style="color: red; padding-right: 1em;"><del>R$ 100,00</del></p>
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta <span class="badge badge-danger">39% Off</span></h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="text-center" style="color: red; padding-right: 1em;"><del>R$ 100,00</del></p>
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="./images/Romeo_Tacos_Un1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title text-center">Charuto Romeo y Julieta <span class="badge badge-danger">39% Off</span></h5>
+                          <div class="d-flex justify-content-center align-items-center text-center">
+                              <p class="text-center" style="color: red; padding-right: 1em;"><del>R$ 100,00</del></p>
+                              <p class="blockquote text-center" style="color: red;">R$ 61,00</p>
+                          </div>
+                          <p class="card-text">Charuto Romeu e Julieta importado edicão limitada Habanos.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-success">
+                                Comprar
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                Detalhes
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
 
     <!-- Footer -->
-    <footer class="page-footer font-small blue sticky-footer">
+    <footer class="page-footer font-small sticky-footer bg-secondary">
 
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">© 2020 Copyright:
-             <a href="./home.html"> Bulldog</a>
+             <a href="./home.html" class="text-dark"> Bulldog</a>
         </div>
         <!-- Copyright -->
     

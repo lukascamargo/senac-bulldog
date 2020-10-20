@@ -3,8 +3,41 @@
 }
 
 .sticky-footer {
-    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
+    position: relative;
+    margin-top: 32px;
+}
+
+section > .row > .col-sm {
+    padding: 1em;
+}
+
+a, u {
+    text-decoration: none !important;
+}
+
+.card .card-footer {
+    background: #fff;
+}
+
+.card .card-footer:hover {
+    transition: all 0.2s ease-out;
+    background: #e2e2e2;
+}
+
+.container-sm .card {
+    margin-top: 32px;
+}
+
+.container-sm h5 {
+    margin-top: 32px;
+}
+
+.col-sm input {
+    margin-top: 60px;
+}
+.col-sm h3 {
+    margin-top: 64px;
 }
