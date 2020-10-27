@@ -3,9 +3,9 @@ import BottomNavigationMenu from '../../components/BottomNavigation';
 import Header from '../../components/Header';
 import {
     Content,
-    Container
 } from './styles';
 import SimplePublicHeader from "../../components/SimplePublicHeader";
+import { Container } from 'react-bootstrap';
 
 type Props = {};
 
@@ -31,11 +31,10 @@ const PublicLayout: React.FC<Props> = ({ children }) => {
 
     return (
         <>
-            { !isMobile ? (<Header />) : (<SimplePublicHeader />) }
+            {/* !isMobile ? (<Header />) : (<SimplePublicHeader />) */}
+            <Header />
             <Container>
-                <Content>
-                    {children}
-                </Content>
+                {children}
             </Container>
         </>
     );
