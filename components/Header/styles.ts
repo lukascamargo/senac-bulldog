@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
 export const Brand = styled.span`
-    color: #FC6A4B;
+    color: #fced4b;
     margin-left: 12px;
 `;
