@@ -14,16 +14,16 @@ export const BottomNavigation = styled(MaterialBottomNavigation)`
     bottom: 0;
     left: 0;
     width: 100%;
-    border-top: 1px solid ${({ theme }: Props) => lighten(theme.palette.text.hint, 0.5)};
+    border-top: 1px solid #cecece;
 
-    background: ${({ theme }: Props) => theme.palette.primary.main};
+    background: #000;
 `;
 
 export const BottomNavigationAction = styled(MaterialBottomNavigationAction)`
-    color: ${({ theme }: Props) => theme.palette.text.hint};
+    color: #cecece;
 
     &.Mui-selected {
-        color: ${({ theme }: Props) => theme.palette.info.main};
-        border-bottom: 3px solid ${({ theme }: Props) => theme.palette.info.main};
+        color: #cecece;
+        border-bottom: 3px solid #cecece;
     }
 `;

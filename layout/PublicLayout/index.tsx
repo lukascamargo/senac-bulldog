@@ -31,7 +31,6 @@ const PublicLayout: React.FC<Props> = ({ children }) => {
 
     return (
         <>
-            {/* !isMobile ? (<Header />) : (<SimplePublicHeader />) */}
             <Header />
             <Container>
                 {children}

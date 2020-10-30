@@ -31,7 +31,7 @@ const PrivateLayout: React.FC<Props> = ({ children }) => {
 
     return (
         <>
-            { !isMobile ? (<Header />) : (<SimpleHeader />) }
+            <Header />
             <Container>
                 <Content>
                     {children}

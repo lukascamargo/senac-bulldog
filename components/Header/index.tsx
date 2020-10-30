@@ -6,26 +6,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Icon } from '@material-ui/core';
 import { Nav, Navbar, NavDropdown, Button } from 'react-bootstrap';
 
-import { Brand, Sidebar, SidebarCloseButton } from './styles';
+import { Brand } from './styles';
 import Link from 'next/link';
-
-// export default function Header() {
-//     return (
-//         <div style={{flexGrow: 1}}>
-//             <AppBar position="static">
-//                 <Toolbar>
-//                     <IconButton edge="start" color="secondary">
-//                         <MenuIcon />
-//                     </IconButton>
-//                     <Typography variant="h6">
-//                         Bulldog
-//                     </Typography>
-//                     <Button color="inherit" style={{marginLeft: "70%"}}>Login</Button>
-//                 </Toolbar>
-//             </AppBar>
-//         </div>
-//     );
-// }
 
 const Header = () => {
 
@@ -41,7 +23,7 @@ const Header = () => {
                     </Brand>
                 </Navbar.Brand>
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center align-items-center">
-                    <Nav className="mr-auto">
+                    <Nav className="ml-auto">
                         <Link href="/">
                             <Nav.Link href="#home">Home</Nav.Link>
                         </Link>

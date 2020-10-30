@@ -4,8 +4,7 @@ import {useCallback, useEffect, useState} from "react";
 import {Produtos} from "../../models/produtos";
 import {Pergunta} from "../../models/pergunta";
 import axios from 'axios';
-import {Divider} from "@material-ui/core";
-import { Card, Carousel, Col, Row } from "react-bootstrap";
+import { Card, Carousel, Col, Row, Tabs, Tab } from "react-bootstrap";
 
 export default function Idproduto() {
     const [produto, setProduto] = useState<Produtos>();
@@ -27,6 +26,7 @@ export default function Idproduto() {
         setPerguntas(responsePerguntas.data);
 
         console.log(produto);
+        console.log(perguntas);
 
         return {produto: responseProduto.data, perguntas: responsePerguntas.data};
     }, [idproduto]);
@@ -34,23 +34,6 @@ export default function Idproduto() {
     if( !produto ) {
         return <p>Produto não encontrado.</p>
     }
-
-    /* return (<PublicLayout>
-        <img src="/img/no-image-found.png" />
-        <p>Nome do Produto { produto.nome }</p>
-        <p>Breve Descrição: { produto.descricao }</p>
-        <p>Valor: { produto.valor }</p>
-        <p>Descrição Completa: { produto.descricao_longa }</p>
-        <Divider />
-        { perguntas?.map((pergunta) => {
-            return <>
-                <p>Pergunta: {pergunta.pergunta}</p>
-                <p>Resposta: {pergunta.resposta}</p>
-                <Divider />
-            </>
-        })}
-    </PublicLayout>); */
-
 
     return (
         <PublicLayout>
@@ -111,10 +94,38 @@ export default function Idproduto() {
                     </Col>
                 </Row>
             </Card>
-            <Card>
+            <Card style={{ marginTop: 12 }}>
                 <Card.Header>
-                    
+                    <h5>Veja mais informações sobre { produto.nome } </h5>
                 </Card.Header>
+                <Card.Body>
+                    <Tabs defaultActiveKey="descricao" id="detalhes-produto" style={{ paddingBottom: 16 }}>
+                        <Tab eventKey="descricao" title="Descriçao">
+                            <p className="card-text text-left">
+                                { produto.descricao_longa || 'Este produto não possui descriçao cadastrada' }
+                            </p>
+                        </Tab>
+                        <Tab eventKey="perguntas" title="Perguntas Frequentes">
+                            {
+                                 perguntas.map((pergunta) => {
+                                    return (
+                                        <>
+                                            <h5 className="card-title text-left">{ pergunta.pergunta }</h5>
+                                            <p className="card-title text-left">{ pergunta.resposta } </p>
+                                        </>
+                                    );
+                                })
+                            }
+                            { 
+                                perguntas.length === 0 ? 
+                                    (
+                                        <p className="card-title text-left">Este produto não possui perguntas cadastradas</p>
+                                    ) : 
+                                    ''
+                            }
+                        </Tab>
+                    </Tabs>
+                </Card.Body>
             </Card>
         </PublicLayout>
     );
