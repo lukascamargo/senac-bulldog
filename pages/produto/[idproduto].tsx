@@ -107,7 +107,7 @@ export default function Idproduto() {
                         </Tab>
                         <Tab eventKey="perguntas" title="Perguntas Frequentes">
                             {
-                                 perguntas.map((pergunta) => {
+                                 perguntas?.map((pergunta) => {
                                     return (
                                         <>
                                             <h5 className="card-title text-left">{ pergunta.pergunta }</h5>
@@ -117,7 +117,7 @@ export default function Idproduto() {
                                 })
                             }
                             { 
-                                perguntas.length === 0 ? 
+                                perguntas?.length === 0 ? 
                                     (
                                         <p className="card-title text-left">Este produto não possui perguntas cadastradas</p>
                                     ) : 
