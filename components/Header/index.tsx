@@ -19,7 +19,7 @@ const Header = () => {
                 </Navbar.Toggle>
                 <Navbar.Brand>
                     <Brand>
-                        Bulldog
+                        The Bulldog
                     </Brand>
                 </Navbar.Brand>
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center align-items-center">
