@@ -1,6 +1,6 @@
 import {NowRequest, NowResponse} from "@vercel/node";
-import {queryPromiseGet, queryPromiseSave} from "./produtos";
-import {Pergunta} from "../../models/pergunta";
+import {queryPromiseGet, queryPromiseSave} from "./produtos_old";
+import {Pergunta} from "../../shared/models/pergunta";
 
 async function saveQuestions(request: NowRequest, response: NowResponse) {
 

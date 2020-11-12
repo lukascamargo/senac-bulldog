@@ -11,12 +11,12 @@ import {
     Typography
 } from '@material-ui/core';
 import {useForm} from "react-hook-form";
-import {Produtos} from "../../models/produtos";
+import {Produtos} from "../../shared/models/produtos";
 import CloseIcon from "@material-ui/icons/Close";
 import Divider from '@material-ui/core/Divider';
 import React, {useCallback, useEffect, useState} from "react";
 import axios from "axios";
-import {Pergunta} from "../../models/pergunta";
+import {Pergunta} from "../../shared/models/pergunta";
 
 interface OwnProps {
     open: boolean;

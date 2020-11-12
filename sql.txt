@@ -9,7 +9,7 @@ CREATE TABLE Usuario (
       sobrenome VARCHAR(100) NOT NULL,
       cpf VARCHAR(20) NOT NULL UNIQUE,
       telefone VARCHAR(15),
-      status BOOLEAN NOT NULL DEFAULT true,
+      status VARCHAR(50) NOT NULL,
       perfil VARCHAR(100),
       nascimento VARCHAR(45),
       PRIMARY KEY (idusuario)
@@ -17,6 +17,7 @@ CREATE TABLE Usuario (
 
 CREATE TABLE Produto (
       idproduto INT(11) NOT NULL AUTO_INCREMENT,
+      quantidade INT(11) NOT NULL,
       status BOOLEAN NOT NULL DEFAULT true,
       nome VARCHAR(100) NOT NULL,
       descricao VARCHAR(100),
@@ -28,16 +29,13 @@ CREATE TABLE Produto (
       PRIMARY KEY (idproduto)
 );
 
-CREATE TABLE Usuario (
-      idusuario int(11) NOT NULL AUTO_INCREMENT,
-      nome varchar(100) NOT NULL,
-      sobrenome varchar(100) NOT NULL,
-      cpf varchar(20) NOT NULL UNIQUE,
-      senha TEXT NOT NULL,
-      email varchar(200) NOT NULL UNIQUE,
-      status varchar(50) NOT NULL DEFAULT "ATIVO",
-      perfil VARCHAR(50) NOT NULL,
-      PRIMARY KEY (idusuario)
+CREATE TABLE ImageProduto (
+      idimage INT(11) NOT NULL AUTO_INCREMENT,
+      path VARCHAR(100) NOT NULL,
+      nome VARCHAR(100) NOT NULL,
+      idproduto INT(11) NOT NULL,
+      PRIMARY KEY (idimage),
+      FOREIGN KEY (idproduto) REFERENCES Produto(idproduto)
 );
 
 CREATE TABLE Cliente (
@@ -49,14 +47,14 @@ CREATE TABLE Cliente (
       cpf VARCHAR(20) NOT NULL UNIQUE,
       telefone VARCHAR(15),
       status BOOLEAN NOT NULL DEFAULT true,
-      perfil VARCHAR(100),
-      nascimento VARCHAR(45),
-      faturamento VARCHAR()
+      PRIMARY KEY (idcliente)
 );
 
 CREATE TABLE Endereco (
       idendereco int(11) NOT NULL AUTO_INCREMENT,
-      cep VARCHAR(20),
+      idcliente int(11) NOT NULL,
+      tipo VARCHAR(50) NOT NULL,
+      cep VARCHAR(20) NOT NULL,
       logradouro VARCHAR(100),
       numero VARCHAR(50),
       complemento VARCHAR(50),
@@ -64,4 +62,24 @@ CREATE TABLE Endereco (
       cidade VARCHAR(100),
       estado VARCHAR(100),
       pais VARCHAR(50),
+      PRIMARY KEY (idendereco),
+      FOREIGN KEY (idcliente) REFERENCES Cliente(idcliente)
 );
+
+export interface Pergunta {
+    idpergunta: number;
+    idproduto: number;
+    status: boolean;
+    pergunta: string;
+    resposta: string;
+}
+
+CREATE TABLE Perguntas (
+      idpergunta int(11) NOT NULL AUTO_INCREMENT,
+      idproduto int(11) NOT NULL,
+      status BOOLEAN NOT NULL DEFAULT true,
+      pergunta VARCHAR(100) NOT NULL,
+      resposta TEXT NOT NULL,
+      PRIMARY KEY (idpergunta),
+      FOREIGN KEY (idproduto) REFERENCES Produto(idproduto)
+)

@@ -1,14 +1,15 @@
 import {useRouter} from "next/router";
-import PublicLayout from "../../layout/PublicLayout";
+import PublicLayout from "../../shared/layout/PublicLayout";
 import {useCallback, useEffect, useState} from "react";
-import {Produtos} from "../../models/produtos";
-import {Pergunta} from "../../models/pergunta";
+import {Produtos} from "../../shared/models/produtos";
+import {Pergunta} from "../../shared/models/pergunta";
 import axios from 'axios';
 import { Card, Carousel, Col, Row, Tabs, Tab } from "react-bootstrap";
 
 export default function Idproduto() {
     const [produto, setProduto] = useState<Produtos>();
     const [perguntas, setPerguntas] = useState<Pergunta[]>();
+    const [images, setImages] = useState<any[]>();
     const router = useRouter();
     const {idproduto} = router.query;
 
@@ -22,11 +23,9 @@ export default function Idproduto() {
         const responseProduto = await axios.get(`/api/produto?idproduto=${idproduto}`);
         const responsePerguntas = await axios.get(`/api/pergunta?idproduto=${idproduto}`);
 
-        setProduto(responseProduto.data[0]);
+        setProduto(responseProduto.data.produto[0]);
+        setImages(responseProduto.data.image);
         setPerguntas(responsePerguntas.data);
-
-        console.log(produto);
-        console.log(perguntas);
 
         return {produto: responseProduto.data, perguntas: responsePerguntas.data};
     }, [idproduto]);
@@ -41,27 +40,17 @@ export default function Idproduto() {
                 <Row>
                     <Col md={7}>
                         <Carousel>
-                            <Carousel.Item>
-                                <img
-                                className="d-block w-100"
-                                src="/img/no-image-found.png"
-                                alt="First slide"
-                                />
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img
-                                className="d-block w-100"
-                                src="/img/no-image-found.png"
-                                alt="Second slide"
-                                />
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img
-                                className="d-block w-100"
-                                src="/img/no-image-found.png"
-                                alt="Third slide"
-                                />
-                            </Carousel.Item>
+                            { images?.map((image) => {
+                                return (
+                                    <Carousel.Item key={image.idimage}>
+                                        <img
+                                        className="d-block w-100"
+                                        src={`http://localhost:3000/api/produtos/image?file=${image.nome}`}
+                                        alt={produto.nome}
+                                        />
+                                    </Carousel.Item>
+                                );
+                            })}
                         </Carousel>
                     </Col>
                     <Col md={5}>

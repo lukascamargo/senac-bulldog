@@ -1,5 +1,5 @@
-import PrivateLayout from '../../layout/PrivateLayout';
-import ProductsList from '../../components/AdminProductsList';
+import PrivateLayout from '../../shared/layout/PrivateLayout';
+import ProductsList from '../../shared/components/ProductsList';
 
 export default function PrivateHome() {
 

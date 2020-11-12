@@ -1,11 +1,8 @@
 import {NowRequest, NowResponse} from "@vercel/node";
 import crypto from 'crypto';
-import { User } from "../../models/user";
-import {queryPromiseGet, queryPromiseSave} from "./produtos";
-
-async function encryptPassword(password: string) {
-    return crypto.createHmac('sha256', 'senha').update(password).digest('hex');
-}
+import { User } from "../../shared/models/user";
+import { encryptPassword } from "./encryptPassword";
+import { queryPromiseGet, queryPromiseSave } from "./produtos_old";
 
 async function show(request: NowRequest, response: NowResponse) {
     const { idusuario } = request.query;
@@ -30,9 +27,21 @@ async function store(request: NowRequest, response: NowResponse) {
 async function update(request: NowRequest, response: NowResponse) {
     const user: User = request.body;
 
+    const updateObject: any = { 
+        status: user.status,
+        nome: user.nome,
+        sobrenome: user.sobrenome,
+        perfil: user.perfil,
+        cpf: user.cpf
+    };
+
+    if (user.senha) {
+        updateObject.senha = await encryptPassword(user.senha);
+    }
+
     const query = await queryPromiseSave(
         `UPDATE Usuario SET ? WHERE idusuario=${user.idusuario}`,
-        { status: user.status, nome: user.nome, sobrenome: user.sobrenome, perfil: user.perfil, cpf: user.cpf}
+        updateObject
     );
 
     return response.json(query);

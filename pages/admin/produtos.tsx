@@ -1,14 +1,15 @@
-import PrivateLayout from '../../layout/PrivateLayout';
-import ProductsList from '../../components/AdminProductsList';
+import PrivateLayout from '../../shared/layout/PrivateLayout';
+import ProductsList from '../../shared/components/ProductsList';
 import Link from 'next/link';
 import { Button } from '@material-ui/core';
 import AdicionarProduto from './adicionar-produto';
 import React, {useState} from "react";
-import {Produtos} from "../../models/produtos";
+import {Produtos} from "../../shared/models/produtos";
 import PerguntasERespostas from "./perguntas-e-respostas";
+import AuthGuard from '../../shared/utils/AuthGuard';
 
 
-export default function Produto() {
+function Produto() {
     const [openDialog, setOpenDialog] = useState<boolean>(false);
     const [questionDialog, setQuestionDialog] = useState<boolean>(false);
     const [createdProducts, setCreatedProducts] = useState<number>(0);
@@ -62,3 +63,5 @@ export default function Produto() {
         </PrivateLayout>
     );
 };
+
+export default AuthGuard(Produto);

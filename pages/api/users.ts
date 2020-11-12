@@ -1,11 +1,7 @@
 import {NowRequest, NowResponse} from "@vercel/node";
 import crypto from 'crypto';
-import { User } from "../../models/user";
-import {queryPromiseGet, queryPromiseSave} from "./produtos";
-
-export async function encryptPassword(password: string) {
-    return crypto.createHmac('sha256', 'senha').update(password).digest('hex');
-}
+import { User } from "../../shared/models/user";
+import { queryPromiseGet } from "./connection";
 
 async function index(request: NowRequest, response: NowResponse) {
     const query = await queryPromiseGet(`SELECT * FROM Usuario`);

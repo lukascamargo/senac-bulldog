@@ -1,9 +1,14 @@
-import PrivateLayout from '../../layout/PrivateLayout';
-import ProductsList from '../../components/AdminProductsList';
+import PrivateLayout from '../../shared/layout/PrivateLayout';
+import AuthGuard from '../../shared/utils/AuthGuard';
+import StockProductList from '../../shared/components/StockProductList';
 
-export default function LandingPage() {
+function LandingPage() {
 
     return (
-        <h3>Landing Page</h3>
+        <PrivateLayout>
+            <StockProductList />
+        </PrivateLayout>
     );
 };
+
+export default AuthGuard(LandingPage);

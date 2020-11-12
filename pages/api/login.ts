@@ -1,8 +1,8 @@
 import {NowRequest, NowResponse} from "@vercel/node";
-import { User } from "../../models/user";
-import {queryPromiseGet, queryPromiseSave} from "./produtos";
-import { encryptPassword } from "./users";
+import { User } from "../../shared/models/user";
 import jwt from 'jsonwebtoken';
+import { queryPromiseGet } from "./connection";
+import { encryptPassword } from "./encryptPassword";
 
 async function login(request: NowRequest, response: NowResponse) {
     let {email, senha} = request.body;

@@ -3,7 +3,7 @@ import {AppBar, Button, Dialog, Grid, IconButton, TextField, Toolbar, Typography
 import CloseIcon from '@material-ui/icons/Close';
 import axios from 'axios';
 import React from "react";
-import { User } from "../../models/user";
+import { User } from "../../shared/models/user";
 
 interface OwnProps {
     open: boolean;
@@ -87,10 +87,10 @@ export default function ManterUsuario({ open, handleClose, handleSaveUser, editU
                 </Grid>
                 <Grid container spacing={5}>
                     <Grid item xs={6}>
-                        <TextField id="senha" type="password" name="senha" label="Senha" defaultValue={editUser?.perfil} inputRef={register({ required: true })}/>
+                        <TextField id="senha" type="password" name="senha" label="Senha" inputRef={register({ required: !editUser?.idusuario })}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField id="senha_confirmar" type="password" name="senha_confirmar" label="Senha" defaultValue={editUser?.senha} inputRef={register({ required: false })}/>
+                        <TextField id="senha_confirmar" type="password" name="senha_confirmar" label="Senha" inputRef={register({ required: !editUser?.idusuario })}/>
                     </Grid>
 
                 </Grid>

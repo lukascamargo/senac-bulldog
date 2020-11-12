@@ -1,12 +1,13 @@
-import PrivateLayout from '../../layout/PrivateLayout';
-import ProductsList from '../../components/AdminProductsList';
+import PrivateLayout from '../../shared/layout/PrivateLayout';
+import ProductsList from '../../shared/components/ProductsList';
 import { useState } from 'react';
-import { User } from '../../models/user';
+import { User } from '../../shared/models/user';
 import { Button } from '@material-ui/core';
-import UserList from '../../components/AdminUserList';
+import UserList from '../../shared/components/AdminUserList';
 import ManterUsuario from './adicionar-usuario';
+import AuthGuard from '../../shared/utils/AuthGuard';
 
-export default function Usuarios() {
+function Usuarios() {
     const [openDialog, setOpenDialog] = useState<boolean>(false);
     const [user, setUser] = useState<User>();
     const [createdUsers, setCreatedUsers] = useState<number>(0);
@@ -43,3 +44,5 @@ export default function Usuarios() {
         </PrivateLayout>
     );
 };
+
+export default AuthGuard(Usuarios);

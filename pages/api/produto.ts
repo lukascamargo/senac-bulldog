@@ -1,12 +1,16 @@
 import {NowRequest, NowResponse} from "@vercel/node";
-import {queryPromiseGet} from "./produtos";
+import { queryPromiseGet } from "./produtos_old";
 
 async function getProduct(request: NowRequest, response: NowResponse) {
     const { idproduto } = request.query;
 
     const query = await queryPromiseGet(`SELECT * FROM Produto WHERE status=true AND idproduto=${idproduto}`);
+    const query2 = await queryPromiseGet(`SELECT * FROM ImageProduto WHERE idproduto=${idproduto}`);
 
-    return response.json(query);
+    return response.json({
+        produto: query,
+        image: query2
+    });
 }
 
 export default async (request: NowRequest, response: NowResponse) => {
