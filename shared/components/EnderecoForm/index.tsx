@@ -43,6 +43,7 @@ export default function EnderecoForm({ tipo, tipoView }: Props) {
 
                 return (
                     <Card style={{ padding: '2em'}}>
+                        <Card.Header>Endereco de { tipoView</Card.Header>
                         <Row>
                             <Col>
                                 <Form.Label>Tipo</Form.Label>
