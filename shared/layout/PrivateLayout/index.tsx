@@ -25,18 +25,18 @@ const PrivateLayout: React.FC<Props> = ({ children }) => {
 
     // }, []);
 
-    useEffect(() => {
-        console.log(isMobile)
-        if(!isMobile) {
-            setIsMobile(window.innerWidth < 992)
-        }
-    }, [isMobile]);
+    // useEffect(() => {
+    //     console.log(isMobile)
+    //     if(!isMobile) {
+    //         setIsMobile(window.innerWidth < 992)
+    //     }
+    // }, [isMobile]);
 
-    useEffect(() => {
-        window.addEventListener('resize', handleSizeChange);
+    // useEffect(() => {
+    //     window.addEventListener('resize', handleSizeChange);
 
-        return () => window.removeEventListener('resize', handleSizeChange);
-    }, [handleSizeChange]);
+    //     return () => window.removeEventListener('resize', handleSizeChange);
+    // }, [handleSizeChange]);
 
     
     
@@ -49,7 +49,7 @@ const PrivateLayout: React.FC<Props> = ({ children }) => {
                     {children}
                 </Content>
             </Container>
-            { isMobile ? (<BottomNavigationMenu />) : ''}
+            {/* { isMobile ? (<BottomNavigationMenu />) : ''} */}
         </>
     );
 }

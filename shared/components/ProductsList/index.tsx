@@ -20,6 +20,7 @@ const ProductsList: React.FC<Props> = ({ novosProdutos, editarProduto, editarPer
     const [produtos, setProdutos] = useState<Produtos[]>([]);
 
     useEffect(() => {
+        console.log('fetch produtos');
         const fetchData = async () => {
             const p = await axios.get('/api/produtos/findAll');
             setProdutos(p.data);

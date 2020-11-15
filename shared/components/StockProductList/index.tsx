@@ -4,24 +4,18 @@ import axios from 'axios';
 import { Produtos } from '../../models/produtos';
 import { FaEdit } from '@fortawesome/fontawesome-free';
 
-interface OwnProps {
-    novosProdutos: number;
-    editarProduto(produto: Produtos): void;
-    editarPerguntas(produto: Produtos): void;
-}
-
-type Props = OwnProps;
-
 const StockProductList = () => {
     const [produtos, setProdutos] = useState<Produtos[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const p = await axios.get('/api/produtos');
+            const p = await axios.get('/api/produtos/findAll');
+            console.log('Data', p);
             setProdutos(p.data);
         }
 
         fetchData();
+        console.log(produtos);
     }, []);
 
     if (produtos.length <= 0) {
@@ -44,9 +38,6 @@ const StockProductList = () => {
                 <TableBody>
                     { produtos.map((produto) => (
                         <TableRow key={produto.idproduto}>
-                            <TableCell align="center">
-                                <FaEdit />
-                            </TableCell>
                             <TableCell align="center">{produto.nome}</TableCell>
                             <TableCell align="center">{produto.quantidade ? produto.quantidade : 0}</TableCell>
                             <TableCell align="center">{produto.valor}</TableCell>

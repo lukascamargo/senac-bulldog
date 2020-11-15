@@ -7,6 +7,7 @@ import React, {useState} from "react";
 import {Produtos} from "../../shared/models/produtos";
 import PerguntasERespostas from "./perguntas-e-respostas";
 import AuthGuard from '../../shared/utils/AuthGuard';
+import PublicLayout from '../../shared/layout/PublicLayout';
 
 
 function Produto() {
@@ -49,7 +50,7 @@ function Produto() {
 
 
     return (
-        <PrivateLayout>
+        <PublicLayout>
             <Button
                 variant="contained"
                 color="primary"
@@ -60,7 +61,7 @@ function Produto() {
             <ProductsList novosProdutos={createdProducts} editarProduto={editarProduto} editarPerguntas={editarPerguntas}/>
             <AdicionarProduto open={openDialog} handleClose={handleDialog} handleSaveProduct={updateProductList} editarProduto={produto} />
             <PerguntasERespostas open={questionDialog} handleClose={handleQuestionDialog} produto={produto} />
-        </PrivateLayout>
+        </PublicLayout>
     );
 };
 

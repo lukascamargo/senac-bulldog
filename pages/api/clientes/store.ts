@@ -35,7 +35,11 @@ export default async (request: NowRequest, response: NowResponse) => {
 
     client.idcliente = query.insertId;
 
-    const enderecos: Endereco[] = [faturamento, ...entrega];
+    const enderecos: Endereco[] = [faturamento];
+
+    if (entrega?.length > 0) {
+        enderecos.push(...entrega);
+    }
 
     const promises = enderecos.map(async endereco => {
         endereco.idcliente = client.idcliente;

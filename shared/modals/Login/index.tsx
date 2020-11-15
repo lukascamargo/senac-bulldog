@@ -18,7 +18,7 @@ export default function Login({ open, handleClose }: Props) {
     const { register, handleSubmit, watch, errors } = useForm();
 
     function getUser() {
-        const token = localStorage.getItem('token');
+        const token = Cookies.get('token');
         if (!token) {
             return false;
         }
@@ -40,7 +40,6 @@ export default function Login({ open, handleClose }: Props) {
         const response = await axios.post('/api/login', data);
 
         if(response.data.token) {
-            localStorage.setItem('token', response.data.token);
             Cookies.set('token', response.data.token);
             Router.push('/estoque');
         }

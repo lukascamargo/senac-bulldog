@@ -14,18 +14,18 @@ const PublicLayout: React.FC<Props> = ({ children }) => {
     
     const handleSizeChange = useCallback(() => setIsMobile(window.innerWidth < 992), [setIsMobile]);
     
-    useEffect(() => {
-        console.log(isMobile)
-        if(!isMobile) {
-            setIsMobile(window.innerWidth < 992)
-        }
-    }, [isMobile]);
+    // useEffect(() => {
+    //     console.log(isMobile)
+    //     if(!isMobile) {
+    //         setIsMobile(window.innerWidth < 992)
+    //     }
+    // }, [isMobile]);
 
-    useEffect(() => {
-        window.addEventListener('resize', handleSizeChange);
+    // useEffect(() => {
+    //     window.addEventListener('resize', handleSizeChange);
 
-        return () => window.removeEventListener('resize', handleSizeChange);
-    }, [handleSizeChange]);
+    //     return () => window.removeEventListener('resize', handleSizeChange);
+    // }, [handleSizeChange]);
 
     
 

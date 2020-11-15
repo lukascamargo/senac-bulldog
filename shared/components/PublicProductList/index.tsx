@@ -47,6 +47,7 @@ export default function PublicProductList() {
                                             } 
                                             alt={produto.nome}
                                             className="card-img-top"
+                                            style={{ maxHeight: 250}}
                                         />
                                         <Card.Body>
                                             <h5 className="card-title text-center">

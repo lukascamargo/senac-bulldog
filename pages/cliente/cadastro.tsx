@@ -1,8 +1,12 @@
 import axios from "axios";
+import { Container } from "next/app";
+import Router from "next/router";
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
+import BasicInfoForm from "../../shared/components/BasicInfoForm";
 import EnderecoForm from "../../shared/components/EnderecoForm";
+import SenhaForm from "../../shared/components/SenhaForm";
 import PublicLayout from "../../shared/layout/PublicLayout";
 import { Cliente } from "../../shared/models/cliente";
 
@@ -16,7 +20,12 @@ export default function LandingPage() {
     const [tamanhoEntrega, setTamanhoEntrega] = useState<any[]>([0]);
 
     const onSubmit = async (data) => {
-        console.log(data);
+        data.status = true;
+        const response = await axios.post('/api/clientes/store', data);
+
+        if (response.status === 201) {
+            Router.push('/cliente/login');
+        }
     }
 
     const adicionarEndereco = () => {
@@ -28,77 +37,33 @@ export default function LandingPage() {
         <PublicLayout>
             <FormProvider {...methods} >
                 <Form onSubmit={methods.handleSubmit(onSubmit)}>
-                    <h3>Informacões Basicas</h3>
-                    <Row>
-                        <Col>
-                            <Form.Label>Nome</Form.Label>
-                            <Form.Control id="nome" name="nome" placeholder="Nome" defaultValue={cliente?.nome} ref={methods.register} />
-                        </Col>
-                        <Col>
-                            <Form.Label>Sobrenome</Form.Label>
-                            <Form.Control id="sobrenome" name="sobrenome" placeholder="Sobrenome" defaultValue={cliente?.nome} ref={methods.register} />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Label>E-mail</Form.Label>
-                            <Form.Control id="email" name="email" placeholder="E-mail" defaultValue={cliente?.nome} ref={methods.register}  />
-                        </Col>
-                        <Col>
-                            <Form.Label>CPF</Form.Label>
-                            <Form.Control id="cpf" name="cpf" placeholder="CPF" defaultValue={cliente?.nome} ref={methods.register}  />
-                        </Col>
-                        <Col>
-                            <Form.Label>Telefone</Form.Label>
-                            <Form.Control id="telefone" name="telefone" placeholder="Telefone"  defaultValue={cliente?.nome} ref={methods.register} />
-                        </Col>
-                    </Row>
-                    <h3>Senha</h3>
+                    <BasicInfoForm />
                     { 
                     !cliente?.idcliente ? 
                         (
-                            <Row>
-                                <Col>
-                                    <Form.Label>Senha</Form.Label>
-                                    <Form.Control id="senha" name="senha" type="password" placeholder="Senha" ref={methods.register} />
-                                </Col>
-                                <Col>
-                                    <Form.Label>Confirmar Senha</Form.Label>
-                                    <Form.Control id="confirmarSenha" name="confirmarSenha" type="password" placeholder="Confirmar Senha" ref={methods.register} />
-                                    {
-                                    true ? 
-                                    (
-                                        <Form.Text className="text-muted text-danger">
-                                            <span style={{ color: 'red' }}>
-                                                As senhas não são iguais
-                                            </span>
-                                        </Form.Text>
-                                    ) 
-                                    : <></>
-                                    }
-                                </Col>
-                            </Row>
+                            <SenhaForm />
                         ) 
                         : <></>
                     }
-                    <h3>Endereco de Faturamento</h3>
-                    <EnderecoForm tipo="faturamento" tipoView="Faturamento" />
-                    <h3>Endereco de Entrega </h3>
-                    {
-                        console.log('fields', fields)
-                    }
-                    { 
+                    <EnderecoForm getValues={methods.getValues} tipo="faturamento" tipoView="Faturamento" />
+                    { /*
                         
                         fields.map((item, index) => {
-                            return <EnderecoForm key={index} tipo={`endereco[${index}]`} tipoView="Endereco" />
+                            return <EnderecoForm getValues={methods.getValues} key={index} tipo={`entrega[${index}]`} tipoView="Entrega" index={index} remove={remove} />
                         })
-                    }
-                    <Button type="button" onClick={() => append({ tipo: 'Entrega' })}>
-                        Adicionar Endereco
-                    </Button>
-                    <Button type="submit">
-                        Cadastrar
-                    </Button>
+                    */ }
+                    <Container >
+                        {/* <Row>
+                            <Button variant="secondary" style={{ marginLeft: '3em' }} type="button" onClick={() => append({ tipo: 'Entrega' })}>
+                                + Endereco de Entrega
+                            </Button>
+                        </Row> */}
+                        <Row>
+                            <Button variant="success" style={{ marginLeft: '3em' }} type="submit">
+                                Cadastrar
+                            </Button>
+                        </Row>
+                    </Container>
                 </Form>
             </FormProvider>
         </PublicLayout>
