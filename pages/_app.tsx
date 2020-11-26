@@ -9,6 +9,9 @@ import '@fortawesome/fontawesome-free/css/fontawesome.css'
 import '@fortawesome/fontawesome-free/css/brands.css'
 import '@fortawesome/fontawesome-free/css/solid.css'
 
+//Own import
+import '../styles/styles.css';
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <React.StrictMode>

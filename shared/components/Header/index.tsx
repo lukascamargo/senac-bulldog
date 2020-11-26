@@ -17,6 +17,7 @@ const Header = () => {
     function getUser() {
         const token = Cookies.get('token');
         console.log("Token", token);
+        
         if (!token) {
             return false;
         }

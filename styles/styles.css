@@ -1,0 +1,11 @@
+.carrinho-alinhar-centro {
+    /* display: 'flex', justifyContent: 'center', alignItems: 'center'  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabela-alinhar-centro {
+    text-align: center;
+    vertical-align: middle;
+}

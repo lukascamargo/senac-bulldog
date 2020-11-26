@@ -3,6 +3,8 @@ import {Produtos} from '../../models/produtos';
 import axios from 'axios';
 import Link from "next/link";
 import { Button, Card, Col, Row } from "react-bootstrap";
+import Cookies from 'js-cookie';
+import Router from "next/router";
 
 type ProdutosPublicList = Produtos & {
     path: string;
@@ -24,6 +26,39 @@ export default function PublicProductList() {
 
         return response;
     }, []);
+
+    const comprarProduto = (produto) => {
+        console.log('Produto a comprar', produto);
+
+        console.log('Cookies', Cookies.get('produtos'))
+
+        const cookies = Cookies.get('produtos') || JSON.stringify([]);
+
+        console.log('Cookies 2', cookies);
+
+        let produtos = JSON.parse(cookies);
+
+        console.log(produtos);
+
+        if (produtos.filter(p => p.idproduto === produto.idproduto).length === 0) {
+            produtos.push({
+                idproduto: produto.idproduto,
+                quantidade: 1,
+            });
+        } else {
+            produtos = produtos.map(p => {
+                p.quantidade = p.quantidade + 1;
+                return p;
+            });
+        }
+
+        console.log(produtos);
+
+
+        Cookies.set('produtos', JSON.stringify(produtos));
+
+        Router.push('/carrinho/preorder');
+    }
 
     if (!produtos) {
         return (<p>Nenhum produto encontrado.</p>)
@@ -61,7 +96,7 @@ export default function PublicProductList() {
                                             <p className="card-text">{produto.descricao}</p>
                                         </Card.Body>
                                         <Card.Footer className="justify-content-between align-items-center">
-                                            <a href="#" className="btn btn-success">
+                                            <a className="btn btn-success" onClick={() => comprarProduto(produto)}>
                                                 Comprar
                                                 <i className="fas fa-shopping-cart"></i>
                                             </a>
