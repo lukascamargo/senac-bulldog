@@ -6,8 +6,7 @@ import { Button, ButtonGroup, FormControl, Image, InputGroup, ListGroup, Table }
 import CarrinhoHeader from '../../shared/components/CarrinhoHeader';
 
 
-export default function PrivateHome() {
-    const [produtos, setProdutos] = useState([]);
+export default function PrivateHome() {    const [produtos, setProdutos] = useState([]);
 
     useEffect(() => {
         async function fetchProducts() {
