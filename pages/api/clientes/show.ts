@@ -4,6 +4,8 @@ import { queryPromiseGet } from "../connection";
 export default async (request: NowRequest, response: NowResponse) => {
     const { idcliente, faturamento, entrega } = request.query;
 
+    const query1 = await queryPromiseGet(`SELECT * FROM Cliente WHERE idcliente=${idcliente} AND status=1`);
+    console.log(query1);
     const {
         email,
         nome,
@@ -11,7 +13,7 @@ export default async (request: NowRequest, response: NowResponse) => {
         cpf,
         telefone,
         status
-    } = await queryPromiseGet(`SELECT * FROM Cliente WHERE idcliente=${idcliente} AND status=true`)[0];
+    } = query1[0];
     const enderecos = await queryPromiseGet(`SELECT * FROM Endereco WHERE idcliente=${idcliente}`) as any[];
 
     const client = {
@@ -22,6 +24,8 @@ export default async (request: NowRequest, response: NowResponse) => {
         telefone,
         status
     };
+
+    console.log(enderecos);
 
     return response.json({
         idcliente,

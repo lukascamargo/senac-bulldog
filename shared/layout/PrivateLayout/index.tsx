@@ -1,13 +1,11 @@
 import jwt from 'jsonwebtoken';
 import Router from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
 import BottomNavigationMenu from '../../components/BottomNavigation';
 import Header from '../../components/Header';
 import SimpleHeader from '../../components/SimpleHeader';
-import {
-    Content,
-    Container
-} from './styles';
+import { nextRoute } from '../../services/nextroute';
 
 type Props = {};
 
@@ -44,10 +42,8 @@ const PrivateLayout: React.FC<Props> = ({ children }) => {
     return (
         <>
             <Header />
-            <Container>
-                <Content>
-                    {children}
-                </Content>
+            <Container style={{ marginBottom: '1em'}}>
+                {children}
             </Container>
             {/* { isMobile ? (<BottomNavigationMenu />) : ''} */}
         </>

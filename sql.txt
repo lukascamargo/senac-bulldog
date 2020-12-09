@@ -83,3 +83,28 @@ CREATE TABLE Perguntas (
       PRIMARY KEY (idpergunta),
       FOREIGN KEY (idproduto) REFERENCES Produto(idproduto)
 )
+
+CREATE TABLE Carrinho (
+      idcarrinho int(11) NOT NULL AUTO_INCREMENT,
+      idcliente int(11) NOT NULL,
+      idendereco int(11) NOT NULL,
+      status VARCHAR(100) NOT NULL,
+      pagamento VARCHAR(100) NOT NULL,
+      total DECIMAL(10,2) NOT NULL,
+      createAt VARCHAR(100) NOT NULL,
+      updateAt VARCHAR(100) NOT NULL,
+      PRIMERY KEY (idcarrinho),
+      FOREIGN KEY (idcliente) REFERENCES Cliente(idcliente),
+      FOREIGN KEY (idendereco) REFERENCES Endereco(idendereco)
+);
+
+CREATE TABLE ItemCarrinho (
+      iditemcarrinho int(11) NOT NULL AUTO_INCREMENT,
+      idproduto int(11) NOT NULL,
+      idcarrinho int(11) NOT NULL,
+      discount DECIMAL(10,2),
+      itens INT(11),
+      PRIMERY KEY (iditemcarrinho),
+      FOREIGN KEY (idproduto) REFERENCES Produto(idproduto),
+      FOREIGN KEY (idcarrinho) REFERENCES Carrinho(idcarrinho),
+);

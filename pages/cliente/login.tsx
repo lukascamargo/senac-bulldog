@@ -1,12 +1,13 @@
 import axios from "axios";
 import Router from "next/router";
 import { useEffect, useState } from "react";
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Button, Card, Col, Form, Nav, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import PublicLayout from "../../shared/layout/PublicLayout";
 import { Cliente } from "../../shared/models/cliente";
 import Cookies from 'js-cookie';
 import jwt from "jsonwebtoken";
+import { nextRoute } from "../../shared/services/nextroute";
 
 export default function LandingPage() {
     const methods = useForm();
@@ -48,6 +49,11 @@ export default function LandingPage() {
                         <Row style={{display: 'flex', justifyContent: 'space-between'}}>
                             <div>
                                 Login
+                                <span className="blockquote">
+                                    <Nav.Link onClick={() => nextRoute('/cliente/cadastro')}>
+                                        Não está cadastrado? Clique aqui e cadastre-se.
+                                    </Nav.Link>
+                                </span>
                             </div>
                         </Row>
                     </Card.Header>

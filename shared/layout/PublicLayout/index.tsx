@@ -6,6 +6,7 @@ import {
 } from './styles';
 import SimplePublicHeader from "../../components/SimplePublicHeader";
 import { Container } from 'react-bootstrap';
+import { nextRoute } from '../../services/nextroute';
 
 type Props = {};
 
@@ -30,12 +31,12 @@ const PublicLayout: React.FC<Props> = ({ children }) => {
     
 
     return (
-        <>
+        <div style={{minHeight: '100vh'}}>
             <Header />
-            <Container>
+            <Container style={{ marginBottom: '1em'}}>
                 {children}
             </Container>
-        </>
+        </div>
     );
 }
 

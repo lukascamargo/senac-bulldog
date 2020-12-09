@@ -1,6 +1,7 @@
 import Axios from "axios";
 import { useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Cliente, ClienteEndereco } from "../../models/cliente";
 import { Endereco } from "../../models/endereco";
 import { ConnectForm } from "../ConnectForm"
 
@@ -10,8 +11,9 @@ type Props = {
     remove?(index: number);
     index?: number;
     getValues();
+    cliente?: ClienteEndereco;
 }
-export default function EnderecoForm({ tipo, tipoView, remove, index, getValues }: Props) {
+export default function EnderecoForm({ tipo, tipoView, remove, index, getValues, cliente }: Props) {
     const [faturamento, setFaturamento] = useState<Endereco>();
 
     return (
@@ -80,6 +82,11 @@ export default function EnderecoForm({ tipo, tipoView, remove, index, getValues 
                             </Row>
                         </Card.Header>
                         <Row>
+                            {
+                                cliente?.faturamento?.idendereco ? (
+                                    <Form.Control type="hidden" name={`${tipo}.idendereco`} defaultValue={cliente?.faturamento?.idendereco} ref={register} />
+                                ) : (<></>)
+                            }
                             <Col sm={12} md={3}>
                                 <Form.Label>Tipo</Form.Label>
                                 <Form.Control as="select" name={`${tipo}.tipo`} defaultValue={tipoView} ref={register}>
@@ -88,37 +95,37 @@ export default function EnderecoForm({ tipo, tipoView, remove, index, getValues 
                             </Col>
                             <Col sm={12} md={3}>
                                 <Form.Label>CEP</Form.Label>
-                                <Form.Control name={`${tipo}.cep`} placeholder="CEP" ref={register} onChange={(e) => viaCEP(e)} />
+                                <Form.Control name={`${tipo}.cep`} placeholder="CEP" defaultValue={cliente?.faturamento?.cep} ref={register} onChange={(e) => viaCEP(e)} />
                             </Col>
                             <Col sm={12} md={4}>
                                 <Form.Label>Logradouro</Form.Label>
-                                <Form.Control name={`${tipo}.logradouro`} placeholder="Logradouro" defaultValue={faturamento?.logradouro} ref={register} />
+                                <Form.Control name={`${tipo}.logradouro`} placeholder="Logradouro" defaultValue={faturamento?.logradouro || cliente?.faturamento?.logradouro } ref={register} />
                             </Col>
                             <Col sm={12} md={2}>
                                 <Form.Label>Numero</Form.Label>
-                                <Form.Control name={`${tipo}.numero`} placeholder="Numero" defaultValue={faturamento?.numero} ref={register} />
+                                <Form.Control name={`${tipo}.numero`} placeholder="Numero" defaultValue={faturamento?.numero || cliente?.faturamento?.numero} ref={register} />
                             </Col>
                         </Row>
                         <Row>
                             <Col sm={12} md={2}>
                                 <Form.Label>Complemento</Form.Label>
-                                <Form.Control name={`${tipo}.complemento`} placeholder="Complemento" defaultValue={faturamento?.numero} ref={register} />
+                                <Form.Control name={`${tipo}.complemento`} placeholder="Complemento" defaultValue={faturamento?.complemento || cliente?.faturamento?.complemento} ref={register} />
                             </Col>
                             <Col sm={12} md={3}>
                                 <Form.Label>Bairro</Form.Label>
-                                <Form.Control name={`${tipo}.bairro`} placeholder="Bairro" defaultValue={faturamento?.numero} ref={register} />
+                                <Form.Control name={`${tipo}.bairro`} placeholder="Bairro" defaultValue={faturamento?.bairro || cliente?.faturamento?.bairro} ref={register} />
                             </Col>
                             <Col sm={12} md={3}>
                                 <Form.Label>Cidade</Form.Label>
-                                <Form.Control name={`${tipo}.cidade`} placeholder="Cidade" defaultValue={faturamento?.numero} ref={register} />
+                                <Form.Control name={`${tipo}.cidade`} placeholder="Cidade" defaultValue={faturamento?.cidade || cliente?.faturamento?.cidade} ref={register} />
                             </Col>
                             <Col sm={12} md={2}>
                                 <Form.Label>Estado</Form.Label>
-                                <Form.Control name={`${tipo}.estado`} placeholder="Estado" defaultValue={faturamento?.numero} ref={register} />
+                                <Form.Control name={`${tipo}.estado`} placeholder="Estado" defaultValue={faturamento?.estado || cliente?.faturamento?.estado} ref={register} />
                             </Col>
                             <Col sm={12} md={2}>
                                 <Form.Label>País</Form.Label>
-                                <Form.Control name={`${tipo}.pais`} placeholder="País" defaultValue={faturamento?.numero} ref={register} />
+                                <Form.Control name={`${tipo}.pais`} placeholder="País" defaultValue={faturamento?.pais || cliente?.faturamento?.pais} ref={register} />
                             </Col>
                         </Row>
                     </Card>

@@ -9,7 +9,7 @@ export default async (request: NowRequest, response: NowResponse) => {
 
     senha = await encryptPassword(senha);
 
-    const query = await queryPromiseGet(`SELECT email FROM Cliente WHERE email='${email}' AND senha='${senha}'`);
+    const query = await queryPromiseGet(`SELECT email, nome, sobrenome, cpf, idcliente FROM Cliente WHERE email='${email}' AND senha='${senha}'`);
 
     console.log(query);
 
@@ -17,15 +17,16 @@ export default async (request: NowRequest, response: NowResponse) => {
         return response.status(404).json({error: 'Cliente não encontrado'});
     }
 
+    console.log(query[0]);
+
     const token = jwt.sign(
         {
             email: query[0].email,
             nome: query[0].nome,
             sobrenome: query[0].sobrenome,
-            perfil: query[0].perfil,
             cpf: query[0].cpf,
             status: query[0].status,
-            idusuario: query[0].idcliente,
+            idcliente: query[0].idcliente,
         }, 
         process.env.JWT_SECRET,
     );

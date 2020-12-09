@@ -9,10 +9,12 @@ import Router from "next/router";
 import Login from '../../modals/Login';
 
 import { Brand } from './styles';
+import { Cliente } from '../../models/cliente';
+import { User } from '../../models/User';
 
 const Header = () => {
     const [openLogin, setOpenLogin] = useState<boolean>(false);
-    const [user, setUser] = useState();
+    const [user, setUser] = useState<Cliente | User>();
 
     function getUser() {
         const token = Cookies.get('token');
@@ -35,8 +37,8 @@ const Header = () => {
         Router.push('/cliente/login');
     }
 
-    function goToRoot() {
-        Router.push('/');
+    function nextRoute(route: string) {
+        Router.push(route);
     }
 
 
@@ -57,7 +59,8 @@ const Header = () => {
                 </Navbar.Brand>
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center align-items-center">
                     <Nav className="ml-auto">
-                        <Nav.Link onClick={goToRoot}>Home</Nav.Link>
+                        <Nav.Link onClick={() => nextRoute('/')}>Home</Nav.Link>
+                        <Nav.Link onClick={() => nextRoute('/carrinho/preorder')}>Carrinho</Nav.Link>
                         {
                             user?.perfil === 'Admin' ? (
                                 <>
@@ -73,6 +76,12 @@ const Header = () => {
                         { 
                         user?.nome || getUser() ? (
                             <>
+                                <NavDropdown title={`${user?.nome} ${user?.sobrenome}`} id="nav-dropdown">
+                                    <NavDropdown.Item href="">Meus Pedidos</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href={`/cliente/perfil/${user?.idcliente}`}>Meu Perfil</NavDropdown.Item>
+                                    <NavDropdown.Item href={`/cliente/entregas/${user?.idcliente}`}>Meus Enderecos</NavDropdown.Item>
+                                </NavDropdown>
                                 <Nav.Link onClick={logout}>Logout</Nav.Link>
                             </>
                         ) : (

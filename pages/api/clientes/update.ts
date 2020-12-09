@@ -5,21 +5,21 @@ import {queryPromiseGet, queryPromiseSave} from "../connection";
 import { encryptPassword } from "../encryptPassword";
 
 export default async (request: NowRequest, response: NowResponse) => {
+    console.log(request.body);
     const {
+        idcliente,
         email,
-        senha,
         nome,
         sobrenome,
         cpf,
         telefone,
         status,
         faturamento,
-        entrega
     } = request.body;
 
     const client: Cliente = {
+        idcliente,
         email,
-        senha,
         nome,
         sobrenome,
         cpf,
@@ -27,20 +27,16 @@ export default async (request: NowRequest, response: NowResponse) => {
         status,
     };
 
-    client.senha = await encryptPassword(client.senha);
-
     const query = await queryPromiseSave(
-        'INSERT INTO Cliente SET ? ', client
+        `UPDATE Cliente SET ? WHERE idcliente=${idcliente}`, client
     ) as any;
-
-    client.idcliente = query.insertId;
 
     const enderecos: Endereco[] = [faturamento];
 
     const promises = enderecos.map(async endereco => {
         endereco.idcliente = client.idcliente;
         await queryPromiseSave(
-            'INSERT INTO Endereco SET ?', endereco
+            `UPDATE Endereco SET ? WHERE idendereco=${endereco.idendereco}`, endereco
         );
     });
 

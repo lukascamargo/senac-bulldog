@@ -9,13 +9,10 @@ import EnderecoForm from "../../shared/components/EnderecoForm";
 import SenhaForm from "../../shared/components/SenhaForm";
 import PublicLayout from "../../shared/layout/PublicLayout";
 import { Cliente } from "../../shared/models/cliente";
+import { nextRoute } from "../../shared/services/nextroute";
 
 export default function LandingPage() {
     const methods = useForm();
-    const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
-        control: methods.control,
-        name: 'entrega'
-    })
     const [cliente, setCliente] = useState<Cliente>();
     const [tamanhoEntrega, setTamanhoEntrega] = useState<any[]>([0]);
 
@@ -46,21 +43,14 @@ export default function LandingPage() {
                         : <></>
                     }
                     <EnderecoForm getValues={methods.getValues} tipo="faturamento" tipoView="Faturamento" />
-                    { /*
-                        
-                        fields.map((item, index) => {
-                            return <EnderecoForm getValues={methods.getValues} key={index} tipo={`entrega[${index}]`} tipoView="Entrega" index={index} remove={remove} />
-                        })
-                    */ }
+                    {/* <EnderecoForm getValues={methods.getValues} tipo="entrega" tipoView="Entrega" /> */}
                     <Container >
-                        {/* <Row>
-                            <Button variant="secondary" style={{ marginLeft: '3em' }} type="button" onClick={() => append({ tipo: 'Entrega' })}>
-                                + Endereco de Entrega
-                            </Button>
-                        </Row> */}
                         <Row>
                             <Button variant="success" style={{ marginLeft: '3em' }} type="submit">
                                 Cadastrar
+                            </Button>
+                            <Button variant="secondary" style={{ marginLeft: '1em' }} onClick={() => nextRoute('/')}>
+                                Cancelar
                             </Button>
                         </Row>
                     </Container>
