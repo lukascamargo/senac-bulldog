@@ -70,20 +70,40 @@ const Header = () => {
                                     <Link href="/admin/usuarios">
                                         <Nav.Link href="/admin/usuarios">Gerenciar Usuarios</Nav.Link>
                                     </Link>
+                                    <Nav.Link onClick={logout}>Logout</Nav.Link>
+                                </>
+                            ) : (<></>)
+                        }
+                        {
+                            user?.perfil === 'Estoque' ? (
+                                <>
+                                    <Link href="/estoque">
+                                        <Nav.Link href="/estoque">Estoque</Nav.Link>
+                                    </Link>
+                                    <Link href="/estoque/pedidos">
+                                        <Nav.Link href="/estoque/pedidos">Pedidos</Nav.Link>
+                                    </Link>
+                                    <Nav.Link onClick={logout}>Logout</Nav.Link>
                                 </>
                             ) : (<></>)
                         }
                         { 
                         user?.nome || getUser() ? (
-                            <>
-                                <NavDropdown title={`${user?.nome} ${user?.sobrenome}`} id="nav-dropdown">
-                                    <NavDropdown.Item href="">Meus Pedidos</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href={`/cliente/perfil/${user?.idcliente}`}>Meu Perfil</NavDropdown.Item>
-                                    <NavDropdown.Item href={`/cliente/entregas/${user?.idcliente}`}>Meus Enderecos</NavDropdown.Item>
-                                </NavDropdown>
-                                <Nav.Link onClick={logout}>Logout</Nav.Link>
-                            </>
+                            user?.idcliente ? 
+                                (
+                                    <>
+                                        <NavDropdown title={`${user?.nome} ${user?.sobrenome}`} id="nav-dropdown">
+                                            <NavDropdown.Item onClick={() => nextRoute(`/cliente/pedidos/${user?.idcliente}`)}>Meus Pedidos</NavDropdown.Item>
+                                            <NavDropdown.Divider />
+                                            <NavDropdown.Item onClick={() => nextRoute(`/cliente/perfil/${user?.idcliente}`)}>Meu Perfil</NavDropdown.Item>
+                                            <NavDropdown.Item onClick={() => nextRoute(`/cliente/entregas/${user?.idcliente}`)}>Meus Enderecos</NavDropdown.Item>
+                                        </NavDropdown>
+                                        <Nav.Link onClick={logout}>Logout</Nav.Link>
+                                    </>
+                                ) :
+                                (
+                                    <></>
+                                )
                         ) : (
                             <>
                                 <Link href="/cliente/cadastro">

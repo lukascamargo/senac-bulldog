@@ -5,16 +5,19 @@ import PrivateLayout from '../../../shared/layout/PrivateLayout';
 import { decode } from '../../../shared/services/token';
 import ShoppingCartTable from '../../../shared/components/ShoppingCartTable';
 import { Cliente } from '../../../shared/models/cliente';
-import { Button, Form } from "react-bootstrap";
+import { Button, ButtonGroup, Form, ToggleButton } from "react-bootstrap";
 import ConfirmarEndereco from "../../../shared/components/ConfirmarEndereco";
 import Pagamento from "../../../shared/components/Pagamento";
 import { FormProvider, useForm } from "react-hook-form";
 import { Endereco } from "../../../shared/models/endereco";
 import axios from "axios";
+import { nextRoute } from "../../../shared/services/nextroute";
+
 
 export default function CheckOut() {
     const [cliente, setCliente] = useState<Cliente>();
     const [endereco, setEndereco] = useState<Endereco>();
+    const [enderecos, setEnderecos] = useState<Endereco[]>();
     const [produtos, setProdutos] = useState();
     const [total, setTotal] = useState();
     const [validarEndereco, setValidarEndereco] = useState<boolean>(false);
@@ -22,20 +25,32 @@ export default function CheckOut() {
 
     const methods = useForm();
 
-
-    useEffect(() => {
+    async function fetchUser() {
         const token = Cookies.get('token');
         if (!token) {
             Router.push('/cliente/login');
         }
 
         const usuario = decode(token) as Cliente;
-        console.log(usuario);
+        console.log('Usuario', usuario);
         if(!usuario.idcliente) {
             Router.push('/cliente/login');
         }
+
+        const response = await axios.get('/api/clientes/show', {
+            params: {
+                idcliente: usuario.idcliente,
+                entrega: true
+            }
+        });
         
-        setCliente(usuario);
+        console.log(response.data);
+        setEndereco(response.data.entrega);
+        setCliente(response.data);
+    }
+
+    useEffect(() => {
+        fetchUser();        
     }, []);
 
     const onSubmit = async (data) => {
@@ -52,6 +67,8 @@ export default function CheckOut() {
         console.log('Carrinho', carrinho);
         const response = await axios.post('/api/checkout/store', carrinho);
         console.log(response);
+        Cookies.set('produtos', []);
+        nextRoute(`/cliente/pedidos/${cliente.idcliente}`);
     }
 
     

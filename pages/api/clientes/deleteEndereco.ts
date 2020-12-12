@@ -6,5 +6,5 @@ export default async (request: NowRequest, response: NowResponse) => {
 
     await queryPromiseGet(`DELETE FROM Endereco WHERE idendereco=${idendereco}`);
 
-    return response.status(200);
+    return response.status(200).json(true);
 }

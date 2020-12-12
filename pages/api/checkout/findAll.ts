@@ -14,5 +14,7 @@ export default async (request: NowRequest, response: NowResponse) => {
         return {...carrinho, pedido: transformarPedido(carrinho.idcarrinho)};
     })
 
+    console.log('Carrinhos', carrinhos);
+
     return response.json(carrinhos);
 }

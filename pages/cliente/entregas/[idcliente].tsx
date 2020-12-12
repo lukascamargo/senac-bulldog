@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import BasicInfoForm from "../../../shared/components/BasicInfoForm";
+import CadastrarEntrega from "../../../shared/components/CadastrarEntrega";
 import EnderecoForm from "../../../shared/components/EnderecoForm";
 import PublicLayout from "../../../shared/layout/PublicLayout";
 import { Cliente } from "../../../shared/models/cliente";
@@ -13,25 +14,27 @@ import { nextRoute } from "../../../shared/services/nextroute";
 export default function LandingPage() {
     const methods = useForm();
     const [cliente, setCliente] = useState<Cliente>();
-    const [tamanhoEntrega, setTamanhoEntrega] = useState<any[]>([0]);
+    const [entregas, setEntregas] = useState<any[]>([0]);
     const [alert, setAlert] = useState<boolean>(false);
 
     const router = useRouter();
     const {idcliente} = router.query;
 
+    async function fetchUser() {
+        const response = await axios.get('/api/clientes/show', {
+            params: {
+                idcliente,
+                entrega: true
+            }
+        });
+
+        console.log(response.data);
+        setCliente(response.data);
+        setEntregas(response.data.entrega);
+    }
+
     useEffect(() => {
         console.log('ID Cliente', idcliente);
-        async function fetchUser() {
-            const response = await axios.get('/api/clientes/show', {
-                params: {
-                    idcliente,
-                    faturamento: true
-                }
-            });
-
-            setCliente(response.data);
-        }
-
         if(idcliente) {
             fetchUser();
         }
@@ -56,10 +59,14 @@ export default function LandingPage() {
         console.log(data);
     }
 
-    const adicionarEndereco = () => {
-        tamanhoEntrega.push(tamanhoEntrega.length - 1);
-        setTamanhoEntrega(tamanhoEntrega);
+    const update = async () => {
+        fetchUser();
     }
+
+    const adicionarEndereco = () => {
+        setEntregas([...entregas, {tipo: 'Entrega'}]);
+    }
+
 
     return (
         <PublicLayout>
@@ -67,23 +74,19 @@ export default function LandingPage() {
                 Dados salvos em nosso banco de dados com sucesso!
             </Alert>
 
-            <FormProvider {...methods} >
-                <Form onSubmit={methods.handleSubmit(onSubmit)}>
-                    <BasicInfoForm cliente={cliente} />
-                    <EnderecoForm cliente={cliente} getValues={methods.getValues} tipo="faturamento" tipoView="Faturamento" />
-                    {/* <EnderecoForm getValues={methods.getValues} tipo="entrega" tipoView="Entrega" /> */}
-                    <Container >
-                        <Row>
-                            <Button variant="success" style={{ marginLeft: '3em' }} type="submit">
-                                Salvar
-                            </Button>
-                            <Button variant="secondary" style={{ marginLeft: '1em' }} onClick={() => nextRoute('/')}>
-                                Cancelar
-                            </Button>
-                        </Row>
-                    </Container>
-                </Form>
-            </FormProvider>
+            <Button variant="primary" onClick={adicionarEndereco}>
+                Adicionar Endereco
+            </Button>
+            
+
+            { 
+                entregas?.map(entrega => {
+                    return (
+                        <CadastrarEntrega entrega={entrega} atualizar={update} idcliente={cliente?.idcliente} />
+                    );
+                })
+            }
+
         </PublicLayout>
     );
 };
